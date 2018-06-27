@@ -11,4 +11,6 @@ node('master') {
             sh 'python --version'
         }
         sh 'echo Test complete...'
+    stage 'Publish'
+        testImage.push()
 }
