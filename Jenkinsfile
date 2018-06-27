@@ -3,13 +3,15 @@ node('master') {
         checkout scm
     }
     stage('Test Code') {
-        def testImage = docker.build("test-image:${env.BUILD_ID}")
+        def testImage = docker.build("zonex/test:${env.BUILD_ID}")
         testImage.inside {
-            sh 'python --version'
+            sh 'pip install pep8'
+            sh 'pip install pylint'
         }
         testImage.inside {
             sh 'python --version'
         }
+        testImage.push()
     }
     stage('Build Production') {
         echo 'Build Production'
