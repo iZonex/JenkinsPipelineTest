@@ -6,4 +6,9 @@ node('master') {
         testImage.inside {
             sh 'python --version'
         }
+    stage 'Test'
+        testImage.inside {
+            sh 'python --version'
+        }
+        sh 'echo Test complete...'
 }
