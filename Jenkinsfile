@@ -1,15 +1,19 @@
 node('master') {
-    stage 'Checkout'
+    stage('Checkout') {
         checkout scm
-    stage 'Build'
+    }
+    stage('Build') {
         def testImage = docker.build("test-image:${env.BUILD_ID}")
         testImage.inside {
             sh 'python --version'
         }
-    stage 'Test'
+    }
+    stage('Test') {
         testImage.inside {
             sh 'python --version'
         }
-    stage 'Publish'
+    }
+    stage('Publish') {
         echo 'Building..'
+    }
 }
