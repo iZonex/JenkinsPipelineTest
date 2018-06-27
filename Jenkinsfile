@@ -1,8 +1,5 @@
 pipeline {
     agent { dockerfile true }
-    environment {
-        VERSION = credentials('VERSION')
-    }
     stages {
         stage('Build') {
             steps {
