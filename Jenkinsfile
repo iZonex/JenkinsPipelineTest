@@ -3,7 +3,7 @@ node('master') {
         checkout scm
     }
     stage('Test Code') {
-        docker.withRegistry("https://registry.hub.docker.com" ,"8a7286c4-7547-4928-a6bd-0313adf9ae76") {
+        docker.withRegistry("https://registry-1.docker.io" ,"8a7286c4-7547-4928-a6bd-0313adf9ae76") {
             def testImage = docker.build("zonex/test:${env.BUILD_ID}")
             testImage.inside {
                 sh 'pip install pep8'
