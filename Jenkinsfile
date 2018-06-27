@@ -1,9 +1,13 @@
 pipeline {
-    agent { dockerfile true }
     stages {
         stage('Build') {
             steps {
                 echo 'Building..'
+                def customImage = docker.build("test")
+
+    		customImage.inside {
+        		sh 'python --version'
+    		}
             }
         }
         stage('Test') {
