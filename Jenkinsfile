@@ -1,14 +1,14 @@
 pipeline {
     stages {
         stage('Build') {
-            steps {
-                echo 'Building..'
-                def customImage = docker.build("test")
+		node {
+                	echo 'Building..'
+                	def customImage = docker.build("test")
 
-    		customImage.inside {
-        		sh 'python --version'
-    		}
-            }
+    			customImage.inside {
+        			sh 'python --version'
+    			}
+                }
         }
         stage('Test') {
             steps {
