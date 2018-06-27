@@ -12,9 +12,9 @@ node('master') {
         }
     }
     stage('Build Production') {
-        sh 'Build Production'
+        echo 'Build Production'
     }
     stage('Publish') {
-        sh 'Building..'
+        echo 'Building..'
     }
 }
