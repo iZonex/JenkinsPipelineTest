@@ -1,12 +1,12 @@
 FROM python:3.6-alpine
 
 ADD docker-entrypoint.sh /docker-entrypoint.sh
-ADD main.py /src/main.py
-ADD requirements /src/requirements/
+ADD app /app
+ADD requirements /app/requirements/
 
-WORKDIR /src
+WORKDIR /app
 
-RUN pip install -r requirements/prod.txt
+RUN pip install -r  /app/requirements/prod.txt
 
 
 ENTRYPOINT ["/docker-entrypoint.sh"]

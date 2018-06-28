@@ -9,8 +9,8 @@ node('master') {
                 sh 'pip list --outdated'
             }
             testImage.inside {
-                sh 'pip install -r /src/requirements/dev.txt'
-                sh 'pylint /src'
+                sh 'pip install -r /app/requirements/dev.txt'
+                sh 'pylint /app'
             }
 
             // testImage.push()
