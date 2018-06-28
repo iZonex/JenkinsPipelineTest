@@ -7,4 +7,5 @@ WORKDIR /src
 
 RUN pip install -r requirements/prod.txt
 
-ENTRYPOINT ["python", "main.py"]
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
