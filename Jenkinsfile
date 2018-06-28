@@ -2,18 +2,17 @@ node('master') {
     stage('Checkout') {
         checkout scm
     }
-    stage('Test Code') {
+    stage('Build image') {
         docker.withRegistry("https://registry-1.docker.io" ,"dockerhub") {
             def testImage = docker.build("zonex/test:${env.BUILD_ID}")
             testImage.inside {
-                sh 'pip install pep8'
-                sh 'pip install pylint'
+                sh 'pip install -r /requirements/dev.txt'
             }
             testImage.inside {
                 sh 'python --version'
             }
-            testImage.push()
-            testImage.push('latest')
+            // testImage.push()
+            // testImage.push('latest')
         }
     }
     stage('Build Production') {
