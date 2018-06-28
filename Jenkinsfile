@@ -7,13 +7,10 @@ node('master') {
             def testImage = docker.build("zonex/test:${env.BUILD_ID}")
             testImage.inside {
                 sh 'pip list --outdated'
-            }
-            testImage.inside {
                 sh 'pip install -r /app/requirements/dev.txt'
                 sh 'pylint /app'
                 sh 'py.test /tests'
             }
-
             // testImage.push()
             // testImage.push('latest')
         }
