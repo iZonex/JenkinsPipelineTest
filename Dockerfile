@@ -5,6 +5,6 @@ ADD requirements /src/requirements
 
 WORKDIR /src
 
-RUN pip install -r /requirements/requirements.prod
+RUN pip install -r /requirements/prod.txt
 
 ENTRYPOINT [ "python main.py" ]
