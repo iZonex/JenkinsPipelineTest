@@ -9,7 +9,7 @@ node('master') {
                 sh 'pip list --outdated'
             }
             testImage.inside {
-                sh 'pip install -r /requirements/dev.txt'
+                sh 'pip install -r /src/requirements/dev.txt'
             }
 
             // testImage.push()
