@@ -1,4 +1,4 @@
-# python test application
+""" python test application """
 
 import asyncio
 import aiohttp
