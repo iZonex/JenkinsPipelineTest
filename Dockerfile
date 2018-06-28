@@ -1,7 +1,7 @@
 FROM python:3.6-alpine
 
 ADD main.py /src/main.py
-ADD requirements /src/requirements
+ADD requirements/ /src/requirements/
 
 WORKDIR /src
 
