@@ -11,6 +11,7 @@ node('master') {
             testImage.inside {
                 sh 'pip install -r /app/requirements/dev.txt'
                 sh 'pylint /app'
+                sh 'py.test /tests'
             }
 
             // testImage.push()

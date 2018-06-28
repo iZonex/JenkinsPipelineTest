@@ -3,6 +3,7 @@ FROM python:3.6-alpine
 ADD docker-entrypoint.sh /docker-entrypoint.sh
 ADD app /app
 ADD requirements /app/requirements/
+ADD tests /tests
 
 WORKDIR /app
 
