@@ -12,6 +12,7 @@ node('master') {
             sh 'pip install -r /app/requirements/dev.txt'
             sh 'pylint /app'
             sh 'py.test /tests'
+            sh 'py.test --cov=app tests/'
         }
     }
     stage('Build Production') {

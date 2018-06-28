@@ -1,4 +1,5 @@
 py
+pytest-cov
 pytest
 pylint
 pyflakes
