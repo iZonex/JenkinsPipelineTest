@@ -4,9 +4,13 @@ node('master') {
     }
     stage('Dockerfile Check') {
         sh 'docker run --rm -i hadolint/hadolint < Dockerfile'
+        sh 'docker run -it --rm --privileged -v $PWD:/root/ projectatomic/dockerfile-lint dockerfile_lint -f Dockerfile'
     }
     stage('Build Image') {
         def dockerImage = docker.build("zonex/test:${env.BUILD_ID}")
+    }
+    stage('Validate Docker Image') {
+
     }
     stage('Test Application') {
         def dockerImage = docker.image("zonex/test:${env.BUILD_ID}")
