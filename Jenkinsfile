@@ -2,10 +2,13 @@ node('master') {
     stage('Checkout') {
         checkout scm
     }
-    stage('Build') {
+    stage('Dockerfile Check') {
+        sh 'docker run --rm -i hadolint/hadolint < Dockerfile'
+    }
+    stage('Build Image') {
         def dockerImage = docker.build("zonex/test:${env.BUILD_ID}")
     }
-    stage('Test') {
+    stage('Test Application') {
         def dockerImage = docker.image("zonex/test:${env.BUILD_ID}")
         dockerImage.inside {
             sh 'pip list --outdated'
@@ -16,13 +19,13 @@ node('master') {
         }
     }
     stage('Build Production') {
+        echo 'Building..'
+    }
+    stage('Push to Registry') {
         docker.withRegistry("https://registry-1.docker.io" ,"dockerhub") {
             def dockerImage = docker.image("zonex/test:${env.BUILD_ID}")
             dockerImage.push()
             dockerImage.push('latest')
         }
-    }
-    stage('Publish') {
-        echo 'Building..'
     }
 }
