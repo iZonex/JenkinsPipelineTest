@@ -9,9 +9,6 @@ node('master') {
     stage('Build Image') {
         def dockerImage = docker.build("zonex/test:${env.BUILD_ID}")
     }
-    stage('Validate Docker Image') {
-
-    }
     stage('Test Application') {
         def dockerImage = docker.image("zonex/test:${env.BUILD_ID}")
         dockerImage.inside {
