@@ -1,9 +1,11 @@
-import os,sys
+# python test application
+
 import asyncio
 import aiohttp
 
 
 async def fetch(session):
+    """ fetch function """
     print('Query http://httpbin.org/get')
     async with session.get(
             'http://httpbin.org/get') as resp:
@@ -12,11 +14,18 @@ async def fetch(session):
         print(data)
 
 
-async def go(loop):
+async def fetch_from_source(loop):
+    """ fetch loop """
     async with aiohttp.ClientSession(loop=loop) as session:
         await fetch(session)
 
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(go(loop))
-loop.close()
+def main():
+    """ start main function """
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(go(loop))
+    loop.close()
+
+
+if __name__ == '__main__':
+    main()
