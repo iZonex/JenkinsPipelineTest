@@ -15,6 +15,12 @@ node('master') {
             sh 'pip install -r /app/requirements/dev.txt'
             sh 'pylint /app'
             sh 'py.test /tests'
+        }
+    }
+    stage('Code Coverage') {
+        def dockerImage = docker.image("zonex/test:${env.BUILD_ID}")
+        dockerImage.inside {
+            sh 'pip install -r /app/requirements/dev.txt'
             sh 'py.test --cov=app tests/'
         }
     }
