@@ -10,6 +10,7 @@ node('master') {
             }
             testImage.inside {
                 sh 'pip install -r /src/requirements/dev.txt'
+                sh 'pylint /src'
             }
 
             // testImage.push()
