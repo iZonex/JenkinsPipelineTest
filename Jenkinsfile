@@ -14,6 +14,8 @@ node('master') {
             sh 'pip list --outdated'
             sh 'pip install -r /app/requirements/dev.txt'
             sh 'pylint /app'
+            sh 'rm -rf /app/__pycache__'
+            sh 'rm -rf /test/__pycache__'
             sh 'py.test /tests'
             sh 'rm -rf /app/__pycache__'
             sh 'rm -rf /test/__pycache__'
