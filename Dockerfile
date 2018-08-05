@@ -2,7 +2,7 @@ FROM python:3.6-alpine
 
 ENV VERSION="0.1.0"
 
-RUN apk add --no-cache gcc=6.4.0-r8
+RUN apk add --no-cache gcc=6.4.0-r8 musl-dev=1.1.12-r8
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 COPY app /app
