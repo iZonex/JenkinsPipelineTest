@@ -8,19 +8,13 @@ node('master') {
     stage('Build Image') {
         def dockerImage = docker.build("zonex/test:${env.BUILD_ID}")
     }
-    stage('Test Application') {
+    stage('Test Code and Coverage') {
         def dockerImage = docker.image("zonex/test:${env.BUILD_ID}")
         dockerImage.inside {
             sh 'pip list --outdated'
             sh 'pip install -r /app/requirements/dev.txt'
             sh 'pylint /app'
             sh 'py.test /tests'
-        }
-    }
-    stage('Code Coverage') {
-        def dockerImage = docker.image("zonex/test:${env.BUILD_ID}")
-        dockerImage.inside {
-            sh 'pip install -r /app/requirements/dev.txt'
             sh 'py.test --cov=app tests/'
         }
     }

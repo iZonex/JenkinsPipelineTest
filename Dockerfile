@@ -1,6 +1,6 @@
 FROM python:3.7-alpine
 
-ENV VERSION="0.1.1"
+ENV VERSION="0.1.2"
 
 RUN apk add --no-cache gcc=6.4.0-r8 musl-dev=1.1.19-r10
 
