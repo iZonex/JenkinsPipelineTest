@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.14.0a3-alpine
 
 ENV VERSION="0.1.2"
 
